@@ -15,13 +15,17 @@ public class RewindTimeGauge : MonoBehaviour {
 	Image imageComponent;
 
 	private void Awake() {
-		numSprites = sprites.Length;
-		interval = 1f / numSprites;
-
 		imageComponent = GetComponent<Image>();
 		if (!imageComponent) {
 			Debug.LogError("Image component not found on Rewind Time Gauge.");
 		}
+
+		Setup();
+	}
+
+	public void Setup() {
+		numSprites = sprites.Length;
+		interval = 1f / numSprites;
 	}
 
     void FixedUpdate() {
