@@ -61,4 +61,8 @@ public class Enemy : MonoBehaviour {
 		return isStunned;
 	}
 
+	public bool GetIsFacingRight() {
+		return isFacingRight;
+	}
+
 }

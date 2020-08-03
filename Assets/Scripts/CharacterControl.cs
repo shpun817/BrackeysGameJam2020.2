@@ -42,6 +42,10 @@ public class CharacterControl : MonoBehaviour {
 			playerRigidbody.AddForce(new Vector2(0, bounceForce));
 	}
 
+	public bool GetIsMovable() {
+		return isPlayerMovable;
+	}
+
 	public void FreezeMotion() {
 		isPlayerMovable = false;
         playerRigidbody.velocity = new Vector2(0,0);

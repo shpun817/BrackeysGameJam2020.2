@@ -18,12 +18,12 @@ public class OfficeAngelAttack : MonoBehaviour {
 			Debug.LogError("No projectile object loaded on Office Angel Attack!");
 		}
 		waitForCoolDown = new WaitForSeconds(cooldown);
-		waitWhileStunned = new WaitWhile(enemyComponent.GetIsStunned);
 		selfTransform = GetComponent<Transform>();
 		enemyComponent = GetComponent<Enemy>();
 		if (!enemyComponent) {
 			Debug.LogError("Enemy component not found on OfficeAngel!");
 		}
+		waitWhileStunned = new WaitWhile(enemyComponent.GetIsStunned);
 		Setup();
 	}
 

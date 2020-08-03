@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour {
 
 	public float moveSpeed = 6.5f;
 
-	public float noiseSize = 0.25f;
+	public float noiseSize = 0.4f;
 
 	Transform player;
 	Transform selfTransform;
