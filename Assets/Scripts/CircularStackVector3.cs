@@ -1,19 +1,20 @@
 using System;
+using UnityEngine;
 
-public class CircularStack<T> {
+public class CircularStackVector3 {
 
-    private T[] _arr;
+    private Vector3[] _arr;
     private int _maxSize; // This is fixed
     private int _top;
     private int _bottom;
 	private bool _isEmpty;
 
-    public CircularStack (int maxSize) {
+    public CircularStackVector3 (int maxSize) {
         if (maxSize <= 0)
             throw new OverflowException("Size of CircularStack not positive.");
-        _arr = new T[maxSize];
+        _arr = new Vector3[maxSize];
 		for (int i = 0; i < maxSize; ++i) {
-			_arr[i] = default(T);
+			_arr[i] = default(Vector3);
 		}
         _top = _bottom = 0;
         _maxSize = maxSize;
@@ -33,7 +34,7 @@ public class CircularStack<T> {
 	}
     public int GetMaxSize() { return _maxSize; }
 
-    public void Push(T obj) {
+    public void Push(Vector3 obj) {
         if (_isEmpty) {
 			_isEmpty = false;
 			_top = _bottom = 0; // Reset to play safe
@@ -46,18 +47,18 @@ public class CircularStack<T> {
 		_arr[_top] = obj;
     }
 
-	public T Peek() {
+	public Vector3 Peek() {
 		if (_isEmpty) {
-			return default(T);
+			return default(Vector3);
 		}
 		return _arr[_top];
 	}
 
-    public T Pop() {
+    public Vector3 Pop() {
         if (_isEmpty) {
-			return default(T);
+			return default(Vector3);
 		} else {
-			T obj = _arr[_top];
+			Vector3 obj = _arr[_top];
 			if (_top == _bottom) {
 				_isEmpty = true;
 			} else {
@@ -73,7 +74,7 @@ public class CircularStack<T> {
     public void Resize(int newSize) {
         if (newSize <= 0)
 			throw new OverflowException("Size of CircularStack not positive.");
-        T[] tempArr = new T[newSize];
+        Vector3[] tempArr = new Vector3[newSize];
 		int currentSize = GetSize();
 		int tempSize = newSize<currentSize?newSize:currentSize;
 		for (int i = 0; i < tempSize; ++i) {
@@ -87,10 +88,27 @@ public class CircularStack<T> {
 
 	public void Clear() {
 		for (int i = 0; i < _maxSize; ++i) {
-			_arr[i] = default(T);
+			_arr[i] = default(Vector3);
 		}
        _top = _bottom = 0;
 	   _isEmpty = true;
+	}
+
+	// Specific for this game
+	public void Offset(Vector3 offset) {
+		if (_isEmpty) {
+			return;
+		}
+		int i = _bottom;
+		while(true) {
+			_arr[i] = _arr[i] + offset;
+
+			if (i == _top) {
+				break;
+			}
+
+			i = (i + 1) % _maxSize;
+		}
 	}
 
     public override String ToString() {

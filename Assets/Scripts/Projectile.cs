@@ -8,14 +8,21 @@ public class Projectile : MonoBehaviour {
 
 	public float noiseSize = 0.4f;
 
-	Transform player;
+	public int damage = 1;
+
+	Transform playerTransform;
 	Transform selfTransform;
 	Rigidbody2D selfRigidbody;
 	Vector3 direction;
+	GameManager gameManager;
 
 	private void Awake() {
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-		if (!player) {
+		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+		if (!gameManager) {
+			Debug.LogError("Game Manager not found by " + gameObject.name);
+		}
+		playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+		if (!playerTransform) {
 			Debug.LogError("Player not found by Projectile " + gameObject.name);
 		}
 		selfRigidbody = GetComponent<Rigidbody2D>();
@@ -29,7 +36,7 @@ public class Projectile : MonoBehaviour {
 	public void Setup() {
 		//Debug.Log("Projectile Setup() called on " + gameObject.name);
 		// Determine the movement direction
-		direction = (player.position - selfTransform.position).normalized;
+		direction = (playerTransform.position - selfTransform.position).normalized;
 		direction.z = 0f; // Make sure the z component is zero
 
 		// Introduce noises to the x and y components
@@ -46,6 +53,7 @@ public class Projectile : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			//Debug.Log("Projectile hit player!");
+			gameManager.PlayerTakeDamage(damage);
 
 			Destroy(gameObject);
 		}

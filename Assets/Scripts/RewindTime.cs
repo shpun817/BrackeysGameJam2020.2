@@ -7,7 +7,7 @@ public class RewindTime : MonoBehaviour {
 	public float maxSeconds = 3f;
 	public float rewindCoolDown = 0.35f;
 
-	CircularStack<Vector3> storedPositions;
+	CircularStackVector3 storedPositions;
 	Transform playerTransform;
 	//Rigidbody2D playerRigidbody;
 	CharacterControl playerController;
@@ -24,7 +24,7 @@ public class RewindTime : MonoBehaviour {
 			Debug.LogWarning("Invalid input to Max Seconds in RewindTime.");
 		}
 		maxSize = Mathf.RoundToInt(maxSeconds * (1f/Time.fixedDeltaTime));
-		storedPositions = new CircularStack<Vector3>(maxSize);
+		storedPositions = new CircularStackVector3(maxSize);
 		playerTransform = GetComponent<Transform>();
 		
 		/*
@@ -104,6 +104,10 @@ public class RewindTime : MonoBehaviour {
 
 	bool RewindButtonReleased() {
 		return !isRewindPressed;
+	}
+
+	public void ApplyOffsetToStoredPositions(Vector3 offset) {
+		storedPositions.Offset(offset);
 	}
 
 	public float GetRewindMeter() {

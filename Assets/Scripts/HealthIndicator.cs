@@ -44,8 +44,12 @@ public class HealthIndicator : MonoBehaviour {
 
 		// Choose the correct sprite according to playerHealth
 		Sprite sprite = imageComponent.sprite;
-		if (playerHealth >= 0 && playerHealth < numSprites) { // Play safe
+		if (playerHealth <= 0) {
+			sprite = sprites[0];
+		} else if (playerHealth < numSprites) {
 			sprite = sprites[playerHealth];
+		} else {
+			sprite = sprites[numSprites-1];
 		}
 		
 

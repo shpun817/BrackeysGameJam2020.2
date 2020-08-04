@@ -81,9 +81,9 @@ GameObject:
   - component: {fileID: 9007325615487957418}
   - component: {fileID: 9007325615487957419}
   - component: {fileID: 962191340}
-  - component: {fileID: 962191343}
   - component: {fileID: 962191338}
   - component: {fileID: 962191342}
+  - component: {fileID: -1186844013645183625}
   m_Layer: 0
   m_Name: Dude
   m_TagString: Player
@@ -142,8 +142,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -720215057
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3125ed6fd7db71046b01b81e906b4e7a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -172,27 +172,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 748da2ce24f006043861585e5f48c9c4, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &962191343
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9007325615487957416}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.001137197, y: -0.037526667}
-  m_Size: {x: 0.5019195, y: 0.80213225}
-  m_Direction: 0
 --- !u!114 &962191338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,3 +205,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSeconds: 3
   rewindCoolDown: 0.35
+--- !u!61 &-1186844013645183625
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9007325615487957416}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0035529137, y: -0.067506075}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.49548125, y: 0.7465563}
+  m_EdgeRadius: 0
