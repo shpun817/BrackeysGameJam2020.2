@@ -8,7 +8,7 @@ public class SwordPickup : MonoBehaviour {
 
 	private void Start() {
 		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-		parentObject = GetComponent<Transform>().parent.gameObject;
+		parentObject = transform.parent.gameObject;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
