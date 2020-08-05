@@ -33,6 +33,11 @@ public class CharacterControl : MonoBehaviour {
 		vx = Input.GetAxisRaw("Horizontal") * moveSpeed;
 		vy = playerRigidbody.velocity.y;
 
+		// Speed limit
+		if (vy < -5) {
+			vy = -5;
+		}
+
 		playerRigidbody.velocity = new Vector2(vx, vy);
     }
 

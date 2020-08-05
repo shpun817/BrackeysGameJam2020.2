@@ -837,6 +837,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
         type: 3}
+      propertyPath: objectsToSpawn.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
       propertyPath: spawnTimeInterval
       value: 5
       objectReference: {fileID: 0}
@@ -844,6 +849,51 @@ PrefabInstance:
         type: 3}
       propertyPath: spawnDistanceFromEachOther
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
+      propertyPath: objectsToSpawn.Array.data[6].tag
+      value: OfficeAngel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
+      propertyPath: objectsToSpawn.Array.data[6].weight
+      value: 0.506
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
+      propertyPath: objectsToSpawn.Array.data[0].tag
+      value: None
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
+      propertyPath: objectsToSpawn.Array.data[0].weight
+      value: 0.698
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
+      propertyPath: objectsToSpawn.Array.data[5].weight
+      value: 0.145
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
+      propertyPath: objectsToSpawn.Array.data[4].weight
+      value: 0.349
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
+      propertyPath: objectsToSpawn.Array.data[2].weight
+      value: 0.407
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
+      propertyPath: objectsToSpawn.Array.data[1].weight
+      value: 0.455
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+        type: 3}
+      propertyPath: objectsToSpawn.Array.data[3].weight
+      value: 0.329
       objectReference: {fileID: 0}
     - target: {fileID: 2421427782890148150, guid: 242b61c4662811840b9331c8e6542ff2,
         type: 3}
