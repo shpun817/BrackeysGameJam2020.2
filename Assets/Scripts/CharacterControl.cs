@@ -20,7 +20,7 @@ public class CharacterControl : MonoBehaviour {
 		playerTransform = GetComponent<Transform>();
 		playerRigidbody = GetComponent<Rigidbody2D>();
 		if (!playerRigidbody) {
-			Debug.LogError("Rigidbody not found on player!");
+			Debug.LogWarning("Rigidbody not found on player!");
 		}
 	}
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class RewindTimeGauge : MonoBehaviour {
@@ -17,7 +15,7 @@ public class RewindTimeGauge : MonoBehaviour {
 	private void Awake() {
 		imageComponent = GetComponent<Image>();
 		if (!imageComponent) {
-			Debug.LogError("Image component not found on Rewind Time Gauge.");
+			Debug.LogWarning("Image component not found on Rewind Time Gauge.");
 		}
 
 		Setup();

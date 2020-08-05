@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UFOAttack : MonoBehaviour {
@@ -15,7 +14,6 @@ public class UFOAttack : MonoBehaviour {
     private void Awake() {
 		waitForCoolDown = new WaitForSeconds(cooldown);
 		numAttackPositions = attackPositions.Length;
-		Setup();
 	}
 
 	public void Setup() {
@@ -36,10 +34,7 @@ public class UFOAttack : MonoBehaviour {
 		// For each attack position, roll dice to determine if a projectile should be spawned there
 		for (int i = 0; i < numAttackPositions; ++i) {
 			if (Random.Range(0f, 1f) <= probabilityToAttack) {
-				Projectile projectile = Instantiate(projectileObj, attackPositions[i].position, attackPositions[i].rotation).GetComponent<Projectile>();
-				if (projectile) {
-					projectile.Setup();
-				}
+				ObjectPooler.Instance.SpawnFromPool("UFOProjectile", attackPositions[i].position, attackPositions[i].rotation);
 			}
 		}
 

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4818711866443752571}
   - component: {fileID: 6507543667355768385}
   - component: {fileID: -5528231299817555307}
+  - component: {fileID: 7936388161849592734}
   m_Layer: 0
   m_Name: OfficeAngel
   m_TagString: Enemy
@@ -95,7 +96,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0034115314, y: -0.043212533}
@@ -139,5 +140,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cdcebd78d3504184f88ed9408b41e54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7936388161849592734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818711866443752564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9610010c15af8034d87686316cdae1f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

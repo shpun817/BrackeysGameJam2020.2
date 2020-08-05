@@ -9,10 +9,10 @@ public class ButtonHighlightTextOnHover : MonoBehaviour, IPointerEnterHandler, I
 	Text buttonText;
 	Color buttonTextColorOriginal;
 
-	private void Awake() {
+	private void Start() {
 		buttonText = GetComponentInChildren<Text>();
 		if (!buttonText) {
-			Debug.LogError("Text not attached to " + gameObject.name);
+			Debug.LogWarning("Text not attached to " + gameObject.name);
 		}
 		buttonTextColorOriginal = buttonText.color;
 	}

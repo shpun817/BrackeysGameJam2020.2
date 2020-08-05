@@ -6,7 +6,7 @@ public class OfficeAngelAttack : MonoBehaviour {
 
 	public float cooldown = 2f;
 
-	public GameObject projectileObj;
+	//public GameObject projectileObj;
 
 	WaitForSeconds waitForCoolDown;
 	WaitWhile waitWhileStunned;
@@ -14,17 +14,18 @@ public class OfficeAngelAttack : MonoBehaviour {
 	Enemy enemyComponent;
 
 	private void Awake() {
+		/*
 		if (!projectileObj) {
-			Debug.LogError("No projectile object loaded on Office Angel Attack!");
+			Debug.LogWarning("No projectile object loaded on Office Angel Attack!");
 		}
+		*/
 		waitForCoolDown = new WaitForSeconds(cooldown);
 		selfTransform = GetComponent<Transform>();
 		enemyComponent = GetComponent<Enemy>();
 		if (!enemyComponent) {
-			Debug.LogError("Enemy component not found on OfficeAngel!");
+			Debug.LogWarning("Enemy component not found on OfficeAngel!");
 		}
 		waitWhileStunned = new WaitWhile(enemyComponent.GetIsStunned);
-		Setup();
 	}
 
 	void Setup() {
@@ -44,8 +45,7 @@ public class OfficeAngelAttack : MonoBehaviour {
 	void Attack() {
 
 		// Shoot projectile in the specified direction
-		// Will be optimized by object pooling
-		Projectile projectile = Instantiate(projectileObj, selfTransform.position, selfTransform.rotation).GetComponent<Projectile>();
+		Projectile projectile = ObjectPooler.Instance.SpawnFromPool("OfficeAngelProjectile", selfTransform.position, selfTransform.rotation).GetComponent<Projectile>();
 		if (projectile) {
 			projectile.Setup();
 		}

@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour, IDestroySelf {
 
 	public float moveSpeed = 6.5f;
 
@@ -16,21 +14,22 @@ public class Projectile : MonoBehaviour {
 	Vector3 direction;
 	GameManager gameManager;
 
-	private void Awake() {
+	string goingForTag = "Player";
+
+	private void Start() {
 		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 		if (!gameManager) {
-			Debug.LogError("Game Manager not found by " + gameObject.name);
+			Debug.LogWarning("Game Manager not found by " + gameObject.name);
 		}
 		playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 		if (!playerTransform) {
-			Debug.LogError("Player not found by Projectile " + gameObject.name);
+			Debug.LogWarning("Player not found by Projectile " + gameObject.name);
 		}
 		selfRigidbody = GetComponent<Rigidbody2D>();
 		if (!selfRigidbody) {
-			Debug.LogError("Rigidbody2D not found on " + gameObject.name);
+			Debug.LogWarning("Rigidbody2D not found on " + gameObject.name);
 		}
 		selfTransform = GetComponent<Transform>();
-		Setup();
 	}
 
 	public void Setup() {
@@ -45,18 +44,52 @@ public class Projectile : MonoBehaviour {
 
 		direction = direction.normalized;
 
+		GoInDirection();
+	}
+
+	private void OnTriggerEnter2D(Collider2D other) {
+		if (other.tag == "Player" || other.tag == "Enemy") {
+			//Debug.Log("Projectile hit player or enemy!");
+			if (other.tag == "Player" && goingForTag == "Player") {
+
+				gameManager.PlayerTakeDamage(damage);
+				DestroySelf();
+
+			} else if (other.tag == "Enemy" && goingForTag == "Enemy") {
+
+				DestructibleEnemy destructibleEnemy = other.GetComponent<DestructibleEnemy>();
+
+				if (destructibleEnemy) {
+					destructibleEnemy.DestroySelf();
+				}
+
+				DestroySelf();
+
+			}
+			
+		} else if (other.tag == "Deflector") {
+			//Debug.Log("Projectile hit deflector!");
+			goingForTag = "Enemy";
+			direction = -direction;
+
+			GoInDirection();
+		}
+	}
+
+	void GoInDirection() {
 		selfTransform.rotation = Quaternion.FromToRotation(Vector3.right, direction);
 
 		selfRigidbody.velocity = direction * moveSpeed;
 	}
 
-	private void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag == "Player") {
-			//Debug.Log("Projectile hit player!");
-			gameManager.PlayerTakeDamage(damage);
+	public void DestroySelf() {
 
-			Destroy(gameObject);
-		}
+		gameObject.SetActive(false);
+
+		// Play visuals
+
+		// Play audio
+
 	}
 
 }

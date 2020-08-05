@@ -6,10 +6,10 @@ public class WinScreenTransition : MonoBehaviour {
 
 	public Button titleScreenButton;
 
-    void Awake() {
+    void Start() {
 		
 		if (!titleScreenButton) {
-			Debug.LogError("Title Screen button not attached to " + gameObject.name);
+			Debug.LogWarning("Title Screen button not attached to " + gameObject.name);
 		}
 
 		titleScreenButton.onClick.AddListener(GoToTitleScreen);

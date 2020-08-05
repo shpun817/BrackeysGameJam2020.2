@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6626566796303839484}
   m_Layer: 0
   m_Name: Game Manager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMaxHealth: 4
   playerHealth: 0
-  targetScore: 3
+  targetScore: 5
   playerScore: 0
   playerAltitudeLimit: -500
+  flashTime: 1
+  swordEffect: {fileID: 0}

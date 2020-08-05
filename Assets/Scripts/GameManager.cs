@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour, ISetup {
 
 	[SerializeField, Range(0, 10)]
 	int playerMaxHealth = 4;
@@ -23,8 +23,12 @@ public class GameManager : MonoBehaviour {
 	[SerializeField]
 	float flashTime = 1f;
 
+	public GameObject swordEffect;
+	float swordDuration = 4.5f;
+
 	bool isPlayerFlashing = false;
 	bool isHeartShielded = false;
+	bool isSwordEffectOn = false;
 
 	Transform playerTransform;
 	Rigidbody2D playerRigidbody;
@@ -33,26 +37,36 @@ public class GameManager : MonoBehaviour {
 	Animator playerAnimator;
 	WaitForSeconds waitForFlashTime;
 
-	private void Awake() {
+	Animator swordEffectAnimator;
+	WaitForSeconds waitForSwordDuration1SecondLess;
+	readonly WaitForSeconds waitFor1Second = new WaitForSeconds(1f);
+	IEnumerator stopSwordEffect;
+
+	private void Start() {
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		playerTransform = player.GetComponent<Transform>();
 		if (!playerTransform) {
-			Debug.LogError("Player not found by Game Manager.");
+			Debug.LogWarning("Player not found by Game Manager.");
 		}
 		playerRigidbody = player.GetComponent<Rigidbody2D>();
 		if (!playerRigidbody) {
-			Debug.LogError("Rigidbody2D not found on player.");
+			Debug.LogWarning("Rigidbody2D not found on player.");
 		}
 		playerRewindTime = player.GetComponent<RewindTime>();
 		if (!playerRigidbody) {
-			Debug.LogError("RewindTime not found on player.");
+			Debug.LogWarning("RewindTime not found on player.");
 		}
 		playerAnimator = player.GetComponent<Animator>();
 		if (!playerRigidbody) {
-			Debug.LogError("Animator not found on player.");
+			Debug.LogWarning("Animator not found on player.");
 		}
+		if (!swordEffect) {
+			Debug.LogWarning("Sword Effect not attached to Game Manager!");
+		}
+		swordEffectAnimator = swordEffect.GetComponent<Animator>();
 		waitUntilPlayerPositionTooLow = new WaitUntil(PlayerPositionTooLow);
 		waitForFlashTime = new WaitForSeconds(flashTime);
+		waitForSwordDuration1SecondLess = new WaitForSeconds(swordDuration - 1f);
 		Setup();
 	}
 
@@ -75,7 +89,7 @@ public class GameManager : MonoBehaviour {
 				//Debug.Log("Player wins.");
 				SceneManager.LoadScene("Win");
 			} else {
-				Debug.LogError("Game Over check receives invalid value.");
+				Debug.LogWarning("Game Over check receives invalid value.");
 			}
 		}
 	}
@@ -165,5 +179,37 @@ public class GameManager : MonoBehaviour {
 		isHeartShielded = true;
 	}
 
+	public void EquipSword() {
+		if (isSwordEffectOn) {
+			if (stopSwordEffect != null)
+				StopCoroutine(stopSwordEffect);
+		}
+
+		isSwordEffectOn = true;
+		swordEffect.SetActive(true);
+		swordEffectAnimator.SetBool("isFlashing", false);
+
+		stopSwordEffect = StopSwordEffect();
+		StartCoroutine(stopSwordEffect);
+	}
+
+	IEnumerator StopSwordEffect() {
+		yield return waitForSwordDuration1SecondLess;
+
+		// Make the sword effect flash
+		if (swordEffectAnimator) {
+			swordEffectAnimator.SetBool("isFlashing", true);
+		}
+
+		yield return waitFor1Second;
+
+		if (swordEffectAnimator) {
+			swordEffectAnimator.SetBool("isFlashing", false);
+		}
+
+		swordEffect.SetActive(false);
+		isSwordEffectOn = false;
+
+	}
 
 }

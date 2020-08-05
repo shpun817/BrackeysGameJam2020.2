@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PigeonPlant : MonoBehaviour {
 
@@ -9,14 +7,14 @@ public class PigeonPlant : MonoBehaviour {
 	GameManager gameManager;
 	CharacterControl player;
 
-	private void Awake() {
+	private void Start() {
 		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 		if (!gameManager) {
-			Debug.LogError("Game Manager not found by " + gameObject.name);
+			Debug.LogWarning("Game Manager not found by " + gameObject.name);
 		}
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterControl>();
 		if (!player) {
-			Debug.LogError("Player not found by " + gameObject.name);
+			Debug.LogWarning("Player not found by " + gameObject.name);
 		}
 	}
 

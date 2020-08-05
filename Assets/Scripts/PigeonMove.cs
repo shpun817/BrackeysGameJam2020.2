@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PigeonMove : MonoBehaviour {
@@ -15,14 +14,13 @@ public class PigeonMove : MonoBehaviour {
 	private void Awake() {
 		enemyComponent = GetComponent<Enemy>();
 		if (!enemyComponent) {
-			Debug.LogError("Enemy Component not found on " + gameObject.name);
+			Debug.LogWarning("Enemy Component not found on " + gameObject.name);
 		}
 		selfRigidbody = GetComponent<Rigidbody2D>();
 		if (!selfRigidbody) {
-			Debug.LogError("Rigidbody2D not found on " + gameObject.name);
+			Debug.LogWarning("Rigidbody2D not found on " + gameObject.name);
 		}
 		waitUntilDirectionChanged = new WaitUntil(directionChanged);
-		Setup();
 	}
 
 	public void Setup() {

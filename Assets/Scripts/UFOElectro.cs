@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UFOElectro : MonoBehaviour {
 
@@ -8,10 +6,10 @@ public class UFOElectro : MonoBehaviour {
 
 	GameManager gameManager;
 
-	private void Awake() {
+	private void Start() {
 		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 		if (!gameManager) {
-			Debug.LogError("Game Manager not found by " + gameObject.name);
+			Debug.LogWarning("Game Manager not found by " + gameObject.name);
 		}
 	}
 

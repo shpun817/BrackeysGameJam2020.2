@@ -13,11 +13,11 @@ public class ShieldIndicator : MonoBehaviour {
 
 	private void Awake() {
 		if (!gameManager) {
-			Debug.LogError("Game Manager not attached on Shield Indicator!");
+			Debug.LogWarning("Game Manager not attached on Shield Indicator!");
 		}
 		imageComponent = GetComponent<Image>();
 		if (!imageComponent) {
-			Debug.LogError("Image component not found on Shield Indicator");
+			Debug.LogWarning("Image component not found on Shield Indicator");
 		}
 		imageColorOriginal = new Color(1f, 1f, 1f, 0.85f);
 		waitUntilIsHeartShieldedInconsistent = new WaitUntil(isHeartShieldedInconsistent);

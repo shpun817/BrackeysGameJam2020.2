@@ -9,25 +9,22 @@ public class Enemy : MonoBehaviour {
 	bool isFacingRight = true;
 
 	Transform player;
-	Transform selfTransform;
 
 	bool isStunned = false;
 	WaitForSeconds waitForStunDuration;
 
-	private void Awake() {
+	private void Start() {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 		if (!player) {
-			Debug.LogError("Player Transform not found by " + gameObject.name);
+			Debug.LogWarning("Player Transform not found by " + gameObject.name);
 		}
-		selfTransform = GetComponent<Transform>();
 		waitForStunDuration = new WaitForSeconds(stunDuration);
-		Setup();
 	}
 
 	public void Setup() {
 
 		// Face the player (assuming the enemy sprite faces right by default)
-		if (selfTransform.position.x > player.position.x) { // self is on the right of player
+		if (transform.position.x > player.position.x) { // self is on the right of player
 			isFacingRight = false;
 		} else {
 			isFacingRight = true;
@@ -35,25 +32,28 @@ public class Enemy : MonoBehaviour {
 
 		if (!isFacingRight) {
 			// Flip the sprite horizontally (x-axis)
-			selfTransform.localScale = new Vector3(-1, 1, 1);
+			transform.localScale = new Vector3(-1, 1, 1);
 		} else {
-			selfTransform.localScale = Vector3.one;
+			transform.localScale = Vector3.one;
 		}
 
 	}
 
+	/* Not used
     private void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			Debug.Log("Player hit!");
 		}
 	}
+	*/
 
-	public IEnumerator Stun() {
+	public void Stun() {
 		isStunned = true;
-		yield return waitForStunDuration;
+		StartCoroutine(UnStun());
 	}
 
-	void UnStun() {
+	IEnumerator UnStun() {
+		yield return waitForStunDuration;
 		isStunned = false;
 	}
 

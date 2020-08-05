@@ -7,13 +7,13 @@ public class LoseScreenTransition : MonoBehaviour {
 	public Button retryButton;
 	public Button titleScreenButton;
 
-    void Awake() {
+    void Start() {
         if (!retryButton) {
-			Debug.LogError("Retry button not attached to " + gameObject.name);
+			Debug.LogWarning("Retry button not attached to " + gameObject.name);
 		}
 		
 		if (!titleScreenButton) {
-			Debug.LogError("Title Screen button not attached to " + gameObject.name);
+			Debug.LogWarning("Title Screen button not attached to " + gameObject.name);
 		}
 
 		retryButton.onClick.AddListener(GoToLevel1);

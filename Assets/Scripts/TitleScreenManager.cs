@@ -8,7 +8,7 @@ public class TitleScreenManager : MonoBehaviour {
 
 	public GameObject aboutPanel, creditPanel;
 
-	private void Awake() {
+	private void Start() {
 		if (!aboutButton) {
 			Debug.LogError("About button not attached to " + gameObject.name);
 		}

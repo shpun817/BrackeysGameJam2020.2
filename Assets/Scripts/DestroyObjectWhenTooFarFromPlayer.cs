@@ -14,7 +14,7 @@ public class DestroyObjectWhenTooFarFromPlayer : MonoBehaviour {
     private void Awake() {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 		if (!player) {
-			Debug.LogError("Player Transform not found by " + gameObject.name);
+			Debug.LogWarning("Player Transform not found by " + gameObject.name);
 		}
 		selfTransform = GetComponent<Transform>();
 		StartCoroutine(distanceCheck());
@@ -25,7 +25,7 @@ public class DestroyObjectWhenTooFarFromPlayer : MonoBehaviour {
         float distance = Mathf.Abs((player.position - selfTransform.position).magnitude);
 
 		if (distance > maxDistance) {
-			Destroy(gameObject);
+			ObjectPooler.Instance.Despawn(gameObject);
 		}
 		StartCoroutine(distanceCheck());
     }

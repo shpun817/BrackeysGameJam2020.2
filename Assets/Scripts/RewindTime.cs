@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RewindTime : MonoBehaviour {
@@ -8,7 +7,6 @@ public class RewindTime : MonoBehaviour {
 	public float rewindCoolDown = 0.35f;
 
 	CircularStackVector3 storedPositions;
-	Transform playerTransform;
 	//Rigidbody2D playerRigidbody;
 	CharacterControl playerController;
 	bool isRewindPressed = false;
@@ -25,18 +23,17 @@ public class RewindTime : MonoBehaviour {
 		}
 		maxSize = Mathf.RoundToInt(maxSeconds * (1f/Time.fixedDeltaTime));
 		storedPositions = new CircularStackVector3(maxSize);
-		playerTransform = GetComponent<Transform>();
 		
 		/*
 		playerRigidbody = GetComponent<Rigidbody2D>();
 		if (!playerRigidbody) {
-			Debug.LogError("Player Rigidbody2D component not found.");
+			Debug.LogWarning("Player Rigidbody2D component not found.");
 		}
 		*/
 		
 		playerController = GetComponent<CharacterControl>();
 		if (!playerController) {
-			Debug.LogError("Player CharacterControl component not found.");
+			Debug.LogWarning("Player CharacterControl component not found.");
 		}
 		
 		cooldown = new WaitForSeconds(rewindCoolDown);
@@ -53,7 +50,7 @@ public class RewindTime : MonoBehaviour {
 			if (isRewindPressed && !isInCooldown) {
 				EnterRewind();
 			} else {
-				StoreInformation(playerTransform.position);
+				StoreInformation(transform.position);
 			}
 		} else {
 			if (!isRewindPressed) {
@@ -78,7 +75,7 @@ public class RewindTime : MonoBehaviour {
 			StopRewind();
 			return;
 		}
-		playerTransform.position = storedPositions.Pop();
+		transform.position = storedPositions.Pop();
 	}
 
 	void StoreInformation(Vector3 position) {

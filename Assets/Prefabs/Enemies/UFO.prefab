@@ -263,6 +263,8 @@ GameObject:
   - component: {fileID: 4412943463289860857}
   - component: {fileID: 1595176823807396623}
   - component: {fileID: 3503030428363750947}
+  - component: {fileID: 6392372510328642020}
+  - component: {fileID: 6023482441154394303}
   m_Layer: 0
   m_Name: UFO
   m_TagString: Enemy
@@ -376,3 +378,41 @@ MonoBehaviour:
   projectileObj: {fileID: 7521041984165470342, guid: 38a8d2922c6b41648833d276065c443a,
     type: 3}
   probabilityToAttack: 0.6
+--- !u!114 &6392372510328642020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412943463289860858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9610010c15af8034d87686316cdae1f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &6023482441154394303
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4412943463289860858}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.039969563}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1.3934028}
+  m_EdgeRadius: 0

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,15 +16,15 @@ public class HealthIndicator : MonoBehaviour {
 	private void Awake() {
 		imageComponent = GetComponent<Image>();
 		if (!imageComponent) {
-			Debug.LogError("Image component not found on Health Indicator.");
+			Debug.LogWarning("Image component not found on Health Indicator.");
 		}
 		if (!gameManager) {
-			Debug.LogError("Game Manager not loaded on Health Indicator!");
+			Debug.LogWarning("Game Manager not loaded on Health Indicator!");
 		}
 		numSprites = sprites.Length;
 		playerHealth = gameManager.GetPlayerMaxHealth();
 		if ((playerHealth + 1) != numSprites) {
-			Debug.LogError("Wrong number of sprites on Health Indicator!");
+			Debug.LogWarning("Wrong number of sprites on Health Indicator!");
 		}
 		waitUntilPlayerHealthInconsistent = new WaitUntil(PlayerHealthInconsistent);
 

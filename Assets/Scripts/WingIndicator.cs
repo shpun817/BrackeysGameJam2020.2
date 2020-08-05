@@ -14,18 +14,18 @@ public class WingIndicator : MonoBehaviour {
 
 	WaitUntil waitUntilPlayerScoreInconsistent;
 
-	private void Awake() {
+	private void Start() {
 		imageComponent = GetComponent<Image>();
 		if (!imageComponent) {
-			Debug.LogError("Image component not found on Wing Indicator.");
+			Debug.LogWarning("Image component not found on Wing Indicator.");
 		}
 		if (!gameManager) {
-			Debug.LogError("Game Manager not loaded on Wing Indicator!");
+			Debug.LogWarning("Game Manager not loaded on Wing Indicator!");
 		}
 		numSprites = sprites.Length;
 		playerScore = gameManager.GetPlayerScore();
 		if (gameManager.GetTargetScore() != numSprites) {
-			Debug.LogError("Wrong number of sprites on Wing Indicator!");
+			Debug.LogWarning("Wrong number of sprites on Wing Indicator!");
 		}
 		waitUntilPlayerScoreInconsistent = new WaitUntil(PlayerScoreInconsistent);
 
