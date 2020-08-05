@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class UFOAttack : MonoBehaviour {
+public class UFOAttack : MonoBehaviour, ISetup {
 
 	public Transform[] attackPositions;
 	public float cooldown = 3.5f;

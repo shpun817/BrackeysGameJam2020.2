@@ -48,3 +48,31 @@ MonoBehaviour:
     prefab: {fileID: 4818711866443752564, guid: 2e31791934387134ab1d99f6a3d0cdfc,
       type: 3}
     size: 20
+  - tag: Pigeon
+    prefab: {fileID: 7360428983743519130, guid: e37a69e5e4449b245b81b4dc240a93d6,
+      type: 3}
+    size: 20
+  - tag: UFO
+    prefab: {fileID: 4412943463289860858, guid: 0f2f7395943ca4c4799bfc108ef8d543,
+      type: 3}
+    size: 15
+  - tag: Shield
+    prefab: {fileID: 4670442964418144969, guid: ac460278267162c43a66213ffcffc5a5,
+      type: 3}
+    size: 10
+  - tag: Feather
+    prefab: {fileID: 8241422669708958923, guid: 2553dd9946a51714ab2f9961b5e4e3b4,
+      type: 3}
+    size: 10
+  - tag: Sword
+    prefab: {fileID: 1638225319813943574, guid: 4bbf90c0b3285164fb44bd18ee823987,
+      type: 3}
+    size: 10
+  - tag: OfficeAngelProjectile
+    prefab: {fileID: 5602169015209399155, guid: 37974f72b4cb0bc478fc603666a93dc6,
+      type: 3}
+    size: 50
+  - tag: UFOProjectile
+    prefab: {fileID: 7521041984165470342, guid: 38a8d2922c6b41648833d276065c443a,
+      type: 3}
+    size: 60

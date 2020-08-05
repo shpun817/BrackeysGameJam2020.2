@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OfficeAngelAttack : MonoBehaviour {
+public class OfficeAngelAttack : MonoBehaviour, ISetup {
 
 	public float cooldown = 2f;
 
@@ -28,7 +28,7 @@ public class OfficeAngelAttack : MonoBehaviour {
 		waitWhileStunned = new WaitWhile(enemyComponent.GetIsStunned);
 	}
 
-	void Setup() {
+	public void Setup() {
 		StartCoroutine("PrepareAttack");
 	}
 
