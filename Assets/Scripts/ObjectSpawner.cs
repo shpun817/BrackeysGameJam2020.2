@@ -35,19 +35,17 @@ public class ObjectSpawner : MonoBehaviour {
 	[SerializeField]
 	float spawnDistanceFromEachOther = 1.5f;
 
-	[SerializeField]
-	float spawnTimeInterval = 2.5f;
-
 	float totalWeight;
 
-	WaitForSeconds waitForSpawnInterval;
+	WaitUntil waitUntilPlayerReachesLowY;
+	float lowY = 0f;
 	Quaternion spawnRotation;
 
 	Transform playerTransform;
 
     // Start is called before the first frame update
     void Start() {
-        waitForSpawnInterval = new WaitForSeconds(spawnTimeInterval);
+        waitUntilPlayerReachesLowY = new WaitUntil(playerReachesLowY);
 		spawnRotation = transform.rotation;
 		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		if (!playerTransform) {
@@ -61,14 +59,13 @@ public class ObjectSpawner : MonoBehaviour {
     }
 
 	IEnumerator SpawnObjects() {
-		yield return waitForSpawnInterval;
+		yield return waitUntilPlayerReachesLowY;
 
 		List<Vector3> spawnPositions = CalculateSpawnPositions();
 
 		string[] spawnObjectTags = GenerateSpawnObjectTags(spawnPositions.Count);
 
 		SpawnObjectsWithTagsAtPositions(spawnObjectTags, spawnPositions);
-		
 
 		StartCoroutine(SpawnObjects());
 	}
@@ -79,6 +76,8 @@ public class ObjectSpawner : MonoBehaviour {
 
 		float startY = playerTransform.position.y - spawnDistanceFromPlayer;
 		float endY = playerTransform.position.y - spawnDistanceFromPlayer - spawnAreaHeight;
+
+		lowY = endY;
 
 		float startX = playerTransform.position.x - (spawnAreaWidth * 0.5f);
 		float endX = playerTransform.position.x + (spawnAreaWidth * 0.5f);
@@ -144,6 +143,14 @@ public class ObjectSpawner : MonoBehaviour {
 		for (int i = 0; i < size; ++i) {
 			if (tags[i] != "None")
 				ObjectPooler.Instance.SpawnFromPool(tags[i], positions[i], spawnRotation);
+		}
+	}
+
+	bool playerReachesLowY() {
+		if (playerTransform.position.y <= lowY) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

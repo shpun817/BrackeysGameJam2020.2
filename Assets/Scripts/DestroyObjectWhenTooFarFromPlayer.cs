@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyObjectWhenTooFarFromPlayer : MonoBehaviour {
 
-	float maxDistance = 15f;
+	float maxDistance = 70f;
 
 	Transform player;
 	Transform selfTransform;
