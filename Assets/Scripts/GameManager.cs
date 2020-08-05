@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour, ISetup {
 	bool isHeartShielded = false;
 	bool isSwordEffectOn = false;
 
+	public static GameObject Player;
+
 	Transform playerTransform;
 	Rigidbody2D playerRigidbody;
 	WaitUntil waitUntilPlayerPositionTooLow;
@@ -43,20 +45,20 @@ public class GameManager : MonoBehaviour, ISetup {
 	IEnumerator stopSwordEffect;
 
 	private void Start() {
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		playerTransform = player.GetComponent<Transform>();
+		Player = GameObject.FindGameObjectWithTag("Player");
+		playerTransform = Player.transform;
 		if (!playerTransform) {
 			Debug.LogWarning("Player not found by Game Manager.");
 		}
-		playerRigidbody = player.GetComponent<Rigidbody2D>();
+		playerRigidbody = Player.GetComponent<Rigidbody2D>();
 		if (!playerRigidbody) {
 			Debug.LogWarning("Rigidbody2D not found on player.");
 		}
-		playerRewindTime = player.GetComponent<RewindTime>();
+		playerRewindTime = Player.GetComponent<RewindTime>();
 		if (!playerRigidbody) {
 			Debug.LogWarning("RewindTime not found on player.");
 		}
-		playerAnimator = player.GetComponent<Animator>();
+		playerAnimator = Player.GetComponent<Animator>();
 		if (!playerRigidbody) {
 			Debug.LogWarning("Animator not found on player.");
 		}

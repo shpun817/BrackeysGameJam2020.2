@@ -374,10 +374,10 @@ MonoBehaviour:
   - {fileID: 4412943461331947564}
   - {fileID: 4412943462418256521}
   - {fileID: 4412943462979699820}
-  cooldown: 3.5
+  cooldown: 4
   projectileObj: {fileID: 7521041984165470342, guid: 38a8d2922c6b41648833d276065c443a,
     type: 3}
-  probabilityToAttack: 0.6
+  probabilityToAttack: 0.45
 --- !u!114 &6392372510328642020
 MonoBehaviour:
   m_ObjectHideFlags: 0
