@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour, IDestroySelf {
+public class Projectile : MonoBehaviour, IDestroySelf, ISetup {
 
 	public float moveSpeed = 6.5f;
 
@@ -9,19 +9,19 @@ public class Projectile : MonoBehaviour, IDestroySelf {
 	public int damage = 1;
 
 	Transform playerTransform;
-	Transform selfTransform;
 	Rigidbody2D selfRigidbody;
 	Vector3 direction;
 	GameManager gameManager;
 
 	string goingForTag = "Player";
 
-	private void Start() {
+	public void Setup() {
+
 		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
 		if (!gameManager) {
 			Debug.LogWarning("Game Manager not found by " + gameObject.name);
 		}
-		playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+		playerTransform = GameManager.Player.GetComponent<Transform>();
 		if (!playerTransform) {
 			Debug.LogWarning("Player not found by Projectile " + gameObject.name);
 		}
@@ -29,13 +29,10 @@ public class Projectile : MonoBehaviour, IDestroySelf {
 		if (!selfRigidbody) {
 			Debug.LogWarning("Rigidbody2D not found on " + gameObject.name);
 		}
-		selfTransform = GetComponent<Transform>();
-	}
 
-	public void Setup() {
 		//Debug.Log("Projectile Setup() called on " + gameObject.name);
 		// Determine the movement direction
-		direction = (playerTransform.position - selfTransform.position).normalized;
+		direction = (playerTransform.position - transform.position).normalized;
 		direction.z = 0f; // Make sure the z component is zero
 
 		// Introduce noises to the x and y components
@@ -77,7 +74,7 @@ public class Projectile : MonoBehaviour, IDestroySelf {
 	}
 
 	void GoInDirection() {
-		selfTransform.rotation = Quaternion.FromToRotation(Vector3.right, direction);
+		transform.rotation = Quaternion.FromToRotation(Vector3.right, direction);
 
 		selfRigidbody.velocity = direction * moveSpeed;
 	}
