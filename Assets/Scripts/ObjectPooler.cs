@@ -14,15 +14,15 @@ public class ObjectPooler : MonoBehaviour {
 
 	#region Singleton
 
-	public static ObjectPooler Instance;
+		public static ObjectPooler Instance;
 
-	private void Awake() {
-		Instance = this;
-	}
+		private void Awake() {
+			Instance = this;
+		}
 
 	#endregion
 
-	public List<Pool> pools;
+	public Pool[] pools;
 
 	public Dictionary<string, Queue<GameObject>> poolDictionary;
 
@@ -31,11 +31,17 @@ public class ObjectPooler : MonoBehaviour {
 
 		poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
+		GameObject pooledObjects = new GameObject("Pooled GameObjects");
+
 		foreach (Pool pool in pools) {
 			Queue<GameObject> objectPool = new Queue<GameObject>();
 
+			GameObject objectType = new GameObject(pool.tag);
+			objectType.transform.parent = pooledObjects.transform;
+
 			for (int i = 0; i < pool.size; ++i) {
 				GameObject obj = Instantiate(pool.prefab);
+				obj.transform.parent = objectType.transform;
 				obj.SetActive(false);
 				objectPool.Enqueue(obj);
 			}
