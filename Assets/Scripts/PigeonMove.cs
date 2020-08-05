@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class PigeonMove : MonoBehaviour {
+public class PigeonMove : MonoBehaviour, ISetup {
 
 	public float moveSpeed = 1.5f;
 
 	Enemy enemyComponent;
-	int direction = 1;
 	Rigidbody2D selfRigidbody;
 
-	WaitUntil waitUntilDirectionChanged;
 
-	private void Awake() {
+	public void Setup() {
+
 		enemyComponent = GetComponent<Enemy>();
 		if (!enemyComponent) {
 			Debug.LogWarning("Enemy Component not found on " + gameObject.name);
@@ -20,29 +19,11 @@ public class PigeonMove : MonoBehaviour {
 		if (!selfRigidbody) {
 			Debug.LogWarning("Rigidbody2D not found on " + gameObject.name);
 		}
-		waitUntilDirectionChanged = new WaitUntil(directionChanged);
-	}
 
-	public void Setup() {
-		StartCoroutine("ChangeDirection");
-	}
+		Vector3 direction = (GameManager.Player.transform.position - transform.position).normalized;
 
-	IEnumerator ChangeDirection() {
-		yield return waitUntilDirectionChanged;
-		if (enemyComponent.GetIsFacingRight()) {
-			direction = 1;
-		} else {
-			direction = -1;
-		}
-		//StartCoroutine("ChangeDirection");
-	}
+		selfRigidbody.velocity = (new Vector2(direction.x, direction.y)) * moveSpeed;
 
-	bool directionChanged() {
-		return enemyComponent.GetIsFacingRight() != (direction == 1);
-	}
-
-	private void FixedUpdate() {
-		selfRigidbody.velocity = new Vector2(moveSpeed * direction, 0);
 	}
 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour, ISetup {
 
 	public float stunDuration = 3f;
 
@@ -13,15 +13,10 @@ public class Enemy : MonoBehaviour {
 	bool isStunned = false;
 	WaitForSeconds waitForStunDuration;
 
-	private void Start() {
-		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-		if (!player) {
-			Debug.LogWarning("Player Transform not found by " + gameObject.name);
-		}
-		waitForStunDuration = new WaitForSeconds(stunDuration);
-	}
-
 	public void Setup() {
+
+		player = GameManager.Player.transform;
+		waitForStunDuration = new WaitForSeconds(stunDuration);
 
 		// Face the player (assuming the enemy sprite faces right by default)
 		if (transform.position.x > player.position.x) { // self is on the right of player

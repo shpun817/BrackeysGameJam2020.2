@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour, IDestroySelf, ISetup {
 		if (!gameManager) {
 			Debug.LogWarning("Game Manager not found by " + gameObject.name);
 		}
-		playerTransform = GameManager.Player.GetComponent<Transform>();
+		playerTransform = GameManager.Player.transform;
 		if (!playerTransform) {
 			Debug.LogWarning("Player not found by Projectile " + gameObject.name);
 		}
