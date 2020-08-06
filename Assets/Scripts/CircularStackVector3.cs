@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CircularStackVector3 {
 
-    private Vector3[] _arr;
+    private RewindTime.Information[] _arr;
     private int _maxSize; // This is fixed
     private int _top;
     private int _bottom;
@@ -12,9 +12,9 @@ public class CircularStackVector3 {
     public CircularStackVector3 (int maxSize) {
         if (maxSize <= 0)
             throw new OverflowException("Size of CircularStack not positive.");
-        _arr = new Vector3[maxSize];
+        _arr = new RewindTime.Information[maxSize];
 		for (int i = 0; i < maxSize; ++i) {
-			_arr[i] = default(Vector3);
+			_arr[i] = null;
 		}
         _top = _bottom = 0;
         _maxSize = maxSize;
@@ -34,7 +34,7 @@ public class CircularStackVector3 {
 	}
     public int GetMaxSize() { return _maxSize; }
 
-    public void Push(Vector3 obj) {
+    public void Push(RewindTime.Information obj) {
         if (_isEmpty) {
 			_isEmpty = false;
 			_top = _bottom = 0; // Reset to play safe
@@ -47,18 +47,18 @@ public class CircularStackVector3 {
 		_arr[_top] = obj;
     }
 
-	public Vector3 Peek() {
+	public RewindTime.Information Peek() {
 		if (_isEmpty) {
-			return default(Vector3);
+			return null;
 		}
 		return _arr[_top];
 	}
 
-    public Vector3 Pop() {
+    public RewindTime.Information Pop() {
         if (_isEmpty) {
-			return default(Vector3);
+			return null;
 		} else {
-			Vector3 obj = _arr[_top];
+			RewindTime.Information obj = _arr[_top];
 			if (_top == _bottom) {
 				_isEmpty = true;
 			} else {
@@ -71,30 +71,15 @@ public class CircularStackVector3 {
 		}
     }
 
-    public void Resize(int newSize) {
-        if (newSize <= 0)
-			throw new OverflowException("Size of CircularStack not positive.");
-        Vector3[] tempArr = new Vector3[newSize];
-		int currentSize = GetSize();
-		int tempSize = newSize<currentSize?newSize:currentSize;
-		for (int i = 0; i < tempSize; ++i) {
-			tempArr[i] = _arr[(_bottom+i)%_maxSize];
-		}
-		_arr = tempArr;
-		_bottom = 0;
-		_top = newSize<currentSize?newSize-1:currentSize-1;
-		_maxSize = newSize;
-    }
-
 	public void Clear() {
 		for (int i = 0; i < _maxSize; ++i) {
-			_arr[i] = default(Vector3);
+			_arr[i] = null;
 		}
        _top = _bottom = 0;
 	   _isEmpty = true;
 	}
 
-	public Vector3[] GetStack() { // Return the stack as regular array (bottom element at index 0)
+	public Vector3[] GetStackPositions() { // Return the stack as regular array (bottom element at index 0)
 
 		int size = GetSize();
 
@@ -102,7 +87,7 @@ public class CircularStackVector3 {
 
 		for (int i = 0; i < size; ++i) {
 			int index = (_bottom + i) % _maxSize;
-			stack[i] = _arr[index];
+			stack[i] = _arr[index].position;
 		}
 
 		return stack;

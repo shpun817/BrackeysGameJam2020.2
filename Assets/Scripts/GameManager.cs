@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour, ISetup {
 	Transform playerTransform;
 	Rigidbody2D playerRigidbody;
 	WaitUntil waitUntilPlayerPositionTooLow;
-	RewindTime playerRewindTime;
+	public RewindTime playerRewindTime;
 	Animator playerAnimator;
 	WaitForSeconds waitForFlashTime;
 
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour, ISetup {
 		yield return waitUntilPlayerPositionTooLow;
 
 		Vector3 offset = Vector3.zero - playerTransform.position;
-		playerRewindTime.ApplyOffsetToStoredPositions(offset);
+		playerRewindTime.ApplyOffsetTostoredInformation(offset);
 		playerTransform.position = Vector3.zero;
 
 

@@ -352,6 +352,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1050261060675330408, guid: 2e94776435e1f8b48b7dbbdf9323b215,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 140542186}
     - target: {fileID: 1050261060675330411, guid: 2e94776435e1f8b48b7dbbdf9323b215,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -409,6 +414,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e94776435e1f8b48b7dbbdf9323b215, type: 3}
+--- !u!82 &140542186 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1050261060675330409, guid: 2e94776435e1f8b48b7dbbdf9323b215,
+    type: 3}
+  m_PrefabInstance: {fileID: 140542185}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &335982981 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8600608477204632409, guid: defdd1262af55954285918f2e795f9d4,

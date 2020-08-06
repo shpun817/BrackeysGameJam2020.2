@@ -3,11 +3,23 @@ using UnityEngine;
 
 public class RewindTime : MonoBehaviour {
 
+	public class Information {
+		public Vector3 position;
+		public Vector3 velocity;
+		public Information(Vector3 p, Vector3 v) {
+			position = p;
+			velocity = v;
+		}
+		public static Information operator+(Information a, Vector3 positionOffset) {
+			return new Information(a.position + positionOffset, a.velocity);
+		}
+	}
+
 	public float maxSeconds = 3f;
 	public float rewindCoolDown = 0.35f;
 
-	CircularStackVector3 storedPositions;
-	//Rigidbody2D playerRigidbody;
+	CircularStackVector3 storedInformation;
+	public Rigidbody2D playerRigidbody;
 	CharacterControl playerController;
 	bool isRewindPressed = false;
 	bool isRewinding = false;
@@ -28,7 +40,7 @@ public class RewindTime : MonoBehaviour {
 			Debug.LogWarning("Invalid input to Max Seconds in RewindTime.");
 		}
 		maxSize = Mathf.RoundToInt(maxSeconds * (1f/Time.fixedDeltaTime));
-		storedPositions = new CircularStackVector3(maxSize);
+		storedInformation = new CircularStackVector3(maxSize);
 		
 		/*
 		playerRigidbody = GetComponent<Rigidbody2D>();
@@ -55,12 +67,12 @@ public class RewindTime : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		//Debug.Log(storedPositions.GetSize());
+		//Debug.Log(storedInformation.GetSize());
 		if (!isRewinding) {
 			if (isRewindPressed && !isInCooldown) {
 				EnterRewind();
 			} else {
-				StoreInformation(transform.position);
+				StoreInformation(transform.position, playerRigidbody.velocity);
 			}
 		} else {
 			if (!isRewindPressed) {
@@ -78,7 +90,7 @@ public class RewindTime : MonoBehaviour {
 		playerController.FreezeMotion();
 
 		if (audioSource) {
-			int numPositions = storedPositions.GetSize();
+			int numPositions = storedInformation.GetSize();
 			float clipLengthOriginal = audioSource.clip.length;
 			float totalTime = Time.fixedDeltaTime * numPositions;
 
@@ -93,16 +105,18 @@ public class RewindTime : MonoBehaviour {
 
 	void DoRewind() {
 		//Debug.Log("Doing Rewind");
-		if (!isRewindPressed || storedPositions.GetSize() <= 0) {
+		if (!isRewindPressed || storedInformation.GetSize() <= 0) {
 			StopRewind();
 			return;
 		}
-		transform.position = storedPositions.Pop();
+		Information info = storedInformation.Pop();
+		transform.position = info.position;
+		playerRigidbody.velocity = info.velocity;
 	}
 
-	void StoreInformation(Vector3 position) {
+	void StoreInformation(Vector3 position, Vector3 velocity) {
 		//Debug.Log("Storing info");
-		storedPositions.Push(position);
+		storedInformation.Push(new Information(position, velocity));
 	}
 
 	void StopRewind() {
@@ -110,7 +124,7 @@ public class RewindTime : MonoBehaviour {
 		//playerRigidbody.isKinematic = false;
 		isRewinding = false;
 		playerController.UnFreezeMotion();
-		//storedPositions.Clear();
+		//storedInformation.Clear();
 		isInCooldown = true;
 
 		if (audioSource) {
@@ -131,7 +145,7 @@ public class RewindTime : MonoBehaviour {
 	}
 
 	void DrawRewindParticles() {
-		Vector3[] positions = storedPositions.GetStack();
+		Vector3[] positions = storedInformation.GetStackPositions();
 		int size = positions.Length;
 
 		for (int i = 0; i < size; i += 20) {
@@ -140,12 +154,12 @@ public class RewindTime : MonoBehaviour {
 
 	}
 
-	public void ApplyOffsetToStoredPositions(Vector3 offset) {
-		storedPositions.Offset(offset);
+	public void ApplyOffsetTostoredInformation(Vector3 offset) {
+		storedInformation.Offset(offset);
 	}
 
 	public float GetRewindMeter() {
-		return (float)storedPositions.GetSize() / maxSize;
+		return (float)storedInformation.GetSize() / maxSize;
 	}
 
 	public bool GetIsInCooldown() {
