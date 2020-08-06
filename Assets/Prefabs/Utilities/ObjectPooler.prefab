@@ -76,3 +76,25 @@ MonoBehaviour:
     prefab: {fileID: 7521041984165470342, guid: 38a8d2922c6b41648833d276065c443a,
       type: 3}
     size: 60
+  - tag: Cloud1
+    prefab: {fileID: 7665164864962318398, guid: 0bcec319a0c35a9488bb0e7730e1d76c,
+      type: 3}
+    size: 50
+  - tag: Cloud2
+    prefab: {fileID: 4795035986477204149, guid: 1f8e40d56e534ad44b8d455ee7e8a577,
+      type: 3}
+    size: 50
+  - tag: Cloud3
+    prefab: {fileID: 316079670494606685, guid: 62e119da0c80e864a9497905502596d4, type: 3}
+    size: 50
+  - tag: RewindParticle
+    prefab: {fileID: 379680110976595661, guid: 30e21c00998cdaf47a72aa50ff8b08cd, type: 3}
+    size: 30
+  - tag: EnemyExplosion
+    prefab: {fileID: 4044421778075408577, guid: eee45db8df2abb244a286329718d0cec,
+      type: 3}
+    size: 10
+  - tag: ProjectileExplosion
+    prefab: {fileID: 3606011724634939210, guid: e6fd3374235587f4bb9d4bfe7c5581f5,
+      type: 3}
+    size: 20

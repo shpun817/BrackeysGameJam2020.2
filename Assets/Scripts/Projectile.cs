@@ -84,6 +84,7 @@ public class Projectile : MonoBehaviour, IDestroySelf, ISetup {
 		gameObject.SetActive(false);
 
 		// Play visuals
+		ObjectPooler.Instance.SpawnFromPool("ProjectileExplosion", transform);
 
 		// Play audio
 

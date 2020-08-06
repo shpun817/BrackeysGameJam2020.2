@@ -19,7 +19,7 @@ TagManager:
   - Check
   - Player
   - Deflector
-  - 
+  - Background
   - 
   - 
   - 
@@ -45,6 +45,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 1451977765
+    locked: 0
+  - name: BackgroundEffects
+    uniqueID: 485822395
     locked: 0
   - name: Pickups
     uniqueID: 437377785

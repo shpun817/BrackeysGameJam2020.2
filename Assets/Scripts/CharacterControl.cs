@@ -7,7 +7,7 @@ public class CharacterControl : MonoBehaviour {
 	public float moveSpeed = 5f;
 	//public float fallSpeed = 5f;
 
-	public float bounceForce = 275f;
+	public float bounceForce = 150f;
 
 	bool isPlayerMovable = true;
 

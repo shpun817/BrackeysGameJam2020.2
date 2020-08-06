@@ -14,6 +14,10 @@ public class RewindTime : MonoBehaviour {
 	bool isInCooldown = false;
 	int maxSize;
 
+	[SerializeField]
+	string RewindParticleName = "RewindParticle";
+	Quaternion particleRotation = Quaternion.Euler(0f, 0f, 0f);
+
 	WaitForSeconds cooldown;
 	WaitUntil releaseButtonClear;
 
@@ -42,6 +46,8 @@ public class RewindTime : MonoBehaviour {
 
 	private void Update() {
 		isRewindPressed = Input.GetButton("Rewind");
+
+		DrawRewindParticles();
 	}
 
 	private void FixedUpdate() {
@@ -101,6 +107,16 @@ public class RewindTime : MonoBehaviour {
 
 	bool RewindButtonReleased() {
 		return !isRewindPressed;
+	}
+
+	void DrawRewindParticles() {
+		Vector3[] positions = storedPositions.GetStack();
+		int size = positions.Length;
+
+		for (int i = 0; i < size; i += 10) {
+			ObjectPooler.Instance.SpawnFromPool(RewindParticleName, positions[i], particleRotation);
+		}
+
 	}
 
 	public void ApplyOffsetToStoredPositions(Vector3 offset) {

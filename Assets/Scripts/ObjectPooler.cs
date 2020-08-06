@@ -83,6 +83,12 @@ public class ObjectPooler : MonoBehaviour {
 
 	}
 
+	public GameObject SpawnFromPool(string tag, Transform transform) {
+
+		return SpawnFromPool(tag, transform.position, transform.rotation);
+
+	}
+
 	public void Despawn(GameObject obj) {
 		IDestroySelf destructibleObject = obj.GetComponent<IDestroySelf>();
 		if (destructibleObject != null) {

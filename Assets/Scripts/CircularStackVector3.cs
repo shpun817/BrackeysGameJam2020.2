@@ -94,22 +94,40 @@ public class CircularStackVector3 {
 	   _isEmpty = true;
 	}
 
-	// Specific for this game
-	public void Offset(Vector3 offset) {
-		if (_isEmpty) {
-			return;
-		}
-		int i = _bottom;
-		while(true) {
-			_arr[i] = _arr[i] + offset;
+	public Vector3[] GetStack() { // Return the stack as regular array (bottom element at index 0)
 
-			if (i == _top) {
-				break;
-			}
+		int size = GetSize();
 
-			i = (i + 1) % _maxSize;
+		Vector3[] stack = new Vector3[size];
+
+		for (int i = 0; i < size; ++i) {
+			int index = (_bottom + i) % _maxSize;
+			stack[i] = _arr[index];
 		}
+
+		return stack;
+
 	}
+
+	#region Specific for this game
+
+		public void Offset(Vector3 offset) {
+			if (_isEmpty) {
+				return;
+			}
+			int i = _bottom;
+			while(true) {
+				_arr[i] = _arr[i] + offset;
+
+				if (i == _top) {
+					break;
+				}
+
+				i = (i + 1) % _maxSize;
+			}
+		}
+
+	#endregion
 
     public override String ToString() {
         String str = "";

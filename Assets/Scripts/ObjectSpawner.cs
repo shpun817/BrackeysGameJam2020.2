@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour {
 
+	/* singleton
 	#region Singleton
 
 		public static ObjectSpawner Instance;
@@ -13,6 +14,7 @@ public class ObjectSpawner : MonoBehaviour {
 		}
 
 	#endregion
+	*/
 
 	[System.Serializable]
 	public class ObjectToSpawn {
@@ -38,7 +40,7 @@ public class ObjectSpawner : MonoBehaviour {
 	float totalWeight;
 
 	WaitUntil waitUntilPlayerReachesLowY;
-	float lowY = 0f;
+	float lowY = -5f;
 	Quaternion spawnRotation;
 
 	Transform playerTransform;
@@ -147,6 +149,13 @@ public class ObjectSpawner : MonoBehaviour {
 	}
 
 	bool playerReachesLowY() {
+		if (!playerTransform) {
+			playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+			if (!playerTransform)
+				return false;
+		}
+
 		if (playerTransform.position.y <= lowY) {
 			return true;
 		} else {

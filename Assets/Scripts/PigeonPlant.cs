@@ -23,7 +23,6 @@ public class PigeonPlant : MonoBehaviour {
 		if (obj.tag == "Player") {
 			//Debug.Log("Plant hit Player!");
 			gameManager.PlayerTakeDamage(damage);
-			player.Bounce();
 		}
 	}
 
