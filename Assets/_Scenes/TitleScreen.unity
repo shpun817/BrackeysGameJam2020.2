@@ -357,6 +357,11 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 140542186}
+    - target: {fileID: 1050261060675330409, guid: 2e94776435e1f8b48b7dbbdf9323b215,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1050261060675330411, guid: 2e94776435e1f8b48b7dbbdf9323b215,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3022,17 +3027,19 @@ PrefabInstance:
     - target: {fileID: 2255912761672473360, guid: 0c5f9dd7e00984846965452c71bf3afc,
         type: 3}
       propertyPath: m_Text
-      value: 'Font: <color=#ffff00ff>Pixel-Art by Parasite</color>
+      value: '<color=#ffa500ff>Font</color>: <color=#ffff00ff>Pixel-Art by Parasite</color>
 
         www.dafont.com/pixel-art.font
 
+        <color=#00ff00ff>Awesome
+        BGM</color>: <color=#ffff00ff>Heaven Falls (short edit) - Sosop</color>
 
-        Artwork
-        Inspiration: My Sister
+        <color=#ff0000ff>Artwork
+        Inspiration</color>: My <color=#ffff00ff>Sister</color>
 
-
-        Game design, Programming, Artwork creation:
-        Sanford Pun'
+        <color=#00ffffff>Game
+        design, Programming, Artwork creation, SFX</color>: <color=#ffff00ff>Sanford
+        Pun (me)</color>'
       objectReference: {fileID: 0}
     - target: {fileID: 2255912761672473360, guid: 0c5f9dd7e00984846965452c71bf3afc,
         type: 3}

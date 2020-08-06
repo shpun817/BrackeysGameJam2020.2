@@ -26,7 +26,7 @@ public class MusicPlayer : MonoBehaviour {
 
 	IEnumerator LoopBackSong() {
 		yield return waitUntilEndOfSong;
-		audioSource.time = 13f;
+		audioSource.time = 13.9f;
 		audioSource.Play();
 		StartCoroutine(LoopBackSong());
 	}
