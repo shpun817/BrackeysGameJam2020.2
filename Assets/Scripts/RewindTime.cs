@@ -21,6 +21,8 @@ public class RewindTime : MonoBehaviour {
 	WaitForSeconds cooldown;
 	WaitUntil releaseButtonClear;
 
+	AudioSource audioSource;
+
     private void Awake() {
 		if (maxSeconds <= 0) {
 			Debug.LogWarning("Invalid input to Max Seconds in RewindTime.");
@@ -42,6 +44,8 @@ public class RewindTime : MonoBehaviour {
 		
 		cooldown = new WaitForSeconds(rewindCoolDown);
 		releaseButtonClear = new WaitUntil(RewindButtonReleased);
+
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Update() {
@@ -72,6 +76,18 @@ public class RewindTime : MonoBehaviour {
 		//playerRigidbody.isKinematic = true;
 		isRewinding = true;
 		playerController.FreezeMotion();
+
+		if (audioSource) {
+			int numPositions = storedPositions.GetSize();
+			float clipLengthOriginal = audioSource.clip.length;
+			float totalTime = Time.fixedDeltaTime * numPositions;
+
+			audioSource.pitch = Mathf.Clamp(clipLengthOriginal / totalTime, -3f, 3f);
+
+			audioSource.Play();
+
+		}
+
 		DoRewind();
 	}
 
@@ -96,6 +112,11 @@ public class RewindTime : MonoBehaviour {
 		playerController.UnFreezeMotion();
 		//storedPositions.Clear();
 		isInCooldown = true;
+
+		if (audioSource) {
+			audioSource.Stop();
+		}
+
 		StartCoroutine("ResetCooldown");
 	}
 

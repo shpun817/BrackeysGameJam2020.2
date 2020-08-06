@@ -32,12 +32,16 @@ public class GameManager : MonoBehaviour, ISetup {
 
 	public static GameObject Player;
 
+	public AudioSource audioSource;
+
 	Transform playerTransform;
 	Rigidbody2D playerRigidbody;
 	WaitUntil waitUntilPlayerPositionTooLow;
 	RewindTime playerRewindTime;
 	Animator playerAnimator;
 	WaitForSeconds waitForFlashTime;
+
+	public Animator heartAnimator;
 
 	Animator swordEffectAnimator;
 	WaitForSeconds waitForSwordDuration1SecondLess;
@@ -158,9 +162,11 @@ public class GameManager : MonoBehaviour, ISetup {
 		isPlayerFlashing = true;
 
 		// Play sound
+		audioSource.Play();
 
 		// Play animation
 		playerAnimator.SetTrigger("StartHurt");
+		heartAnimator.SetTrigger("StartHurt");
 		StartCoroutine(StopHurt());
 
 		if (isHeartShielded) {
@@ -174,6 +180,7 @@ public class GameManager : MonoBehaviour, ISetup {
 		yield return waitForFlashTime;
 
 		playerAnimator.SetTrigger("EndHurt");
+		heartAnimator.SetTrigger("EndHurt");
 		isPlayerFlashing = false;
 	}
 

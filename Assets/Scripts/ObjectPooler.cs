@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour {
@@ -94,6 +95,11 @@ public class ObjectPooler : MonoBehaviour {
 		if (destructibleObject != null) {
 			destructibleObject.DestroySelf();
 		}
+	}
+
+	public IEnumerator Despawn(GameObject obj, float delay) {
+		yield return new WaitForSeconds(delay);
+		Despawn(obj);
 	}
 
 }

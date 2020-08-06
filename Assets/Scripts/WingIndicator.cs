@@ -14,6 +14,8 @@ public class WingIndicator : MonoBehaviour {
 
 	WaitUntil waitUntilPlayerScoreInconsistent;
 
+	Animator animator;
+
 	private void Start() {
 		imageComponent = GetComponent<Image>();
 		if (!imageComponent) {
@@ -28,6 +30,8 @@ public class WingIndicator : MonoBehaviour {
 			Debug.LogWarning("Wrong number of sprites on Wing Indicator!");
 		}
 		waitUntilPlayerScoreInconsistent = new WaitUntil(PlayerScoreInconsistent);
+
+		animator = GetComponent<Animator>();
 
 		Setup();
 	}
@@ -60,7 +64,13 @@ public class WingIndicator : MonoBehaviour {
 	}
 
 	bool PlayerScoreInconsistent() {
-		return (playerScore != gameManager.GetPlayerScore());
+		int check = gameManager.GetPlayerScore() - playerScore;
+
+		if (check > 0) {
+			animator.SetTrigger("Upgrade");
+		}
+
+		return (check != 0);
 	}
 
 }

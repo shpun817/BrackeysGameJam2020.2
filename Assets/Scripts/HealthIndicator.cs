@@ -13,6 +13,8 @@ public class HealthIndicator : MonoBehaviour {
 
 	WaitUntil waitUntilPlayerHealthInconsistent;
 
+	public AudioSource audioSource;
+
 	private void Awake() {
 		imageComponent = GetComponent<Image>();
 		if (!imageComponent) {
@@ -40,6 +42,12 @@ public class HealthIndicator : MonoBehaviour {
 
 		// Update playerHealth variable
 		playerHealth = gameManager.GetPlayerHealth();
+
+		if (playerHealth == 1) {
+			audioSource.Play();
+		} else if (audioSource.isPlaying) {
+			audioSource.Stop();
+		}
 
 		// Choose the correct sprite according to playerHealth
 		Sprite sprite = imageComponent.sprite;

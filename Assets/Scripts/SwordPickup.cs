@@ -14,6 +14,7 @@ public class SwordPickup : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			gameManager.EquipSword();
+			ObjectPooler.Instance.SpawnFromPool("PickupSoundEffect", transform);
 			ObjectPooler.Instance.Despawn(parentObject);
 		}
 	}
