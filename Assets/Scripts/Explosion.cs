@@ -6,8 +6,11 @@ public class Explosion : MonoBehaviour, IDestroySelf, ISetup {
 	
 	Animator animator;
 
+	AudioSource audioSource;
+
 	private void Awake() {
 		animator = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
 	}
 
     public void DestroySelf() {
@@ -17,6 +20,9 @@ public class Explosion : MonoBehaviour, IDestroySelf, ISetup {
 	public void Setup() {
 		if (animator) {
 			animator.SetTrigger("StartExplosion");
+		}
+		if (audioSource) {
+			audioSource.Play();
 		}
 	}
 

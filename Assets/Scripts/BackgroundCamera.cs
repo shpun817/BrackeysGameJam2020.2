@@ -6,7 +6,7 @@ public class BackgroundCamera : MonoBehaviour {
 
 	public Transform background;
 
-	public float spawnCloudDistance = 4.5f;
+	public float spawnCloudDistance = 8f;
 
 	public string[] cloudNames;
 

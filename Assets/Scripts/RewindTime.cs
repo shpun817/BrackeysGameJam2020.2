@@ -113,7 +113,7 @@ public class RewindTime : MonoBehaviour {
 		Vector3[] positions = storedPositions.GetStack();
 		int size = positions.Length;
 
-		for (int i = 0; i < size; i += 10) {
+		for (int i = 0; i < size; i += 20) {
 			ObjectPooler.Instance.SpawnFromPool(RewindParticleName, positions[i], particleRotation);
 		}
 

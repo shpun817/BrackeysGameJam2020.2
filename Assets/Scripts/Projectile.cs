@@ -67,7 +67,10 @@ public class Projectile : MonoBehaviour, IDestroySelf, ISetup {
 		} else if (other.tag == "Deflector") {
 			//Debug.Log("Projectile hit deflector!");
 			goingForTag = "Enemy";
-			direction = -direction;
+
+			direction = (transform.position - other.transform.position).normalized;
+
+			moveSpeed *= 1.5f;
 
 			GoInDirection();
 		}

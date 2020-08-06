@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6899528838065448532}
   - component: {fileID: 6161824700489613915}
   - component: {fileID: 5121026837034697398}
+  - component: {fileID: 3843719377275727912}
   m_Layer: 12
   m_Name: Cloud3
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 6448808092783013682, guid: 983b0ee08c51a424c94d7afe46e54a77,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.28235295}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,3 +103,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3843719377275727912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316079670494606685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7489dcbec27c43041bf2158b35812c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

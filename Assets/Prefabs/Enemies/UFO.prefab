@@ -330,7 +330,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -439860253
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: affcd0490b86c754596dffe12298c8f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -377,7 +377,7 @@ MonoBehaviour:
   cooldown: 4
   projectileObj: {fileID: 7521041984165470342, guid: 38a8d2922c6b41648833d276065c443a,
     type: 3}
-  probabilityToAttack: 0.45
+  probabilityToAttack: 0.4
 --- !u!114 &6392372510328642020
 MonoBehaviour:
   m_ObjectHideFlags: 0
