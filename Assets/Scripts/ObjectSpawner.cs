@@ -134,7 +134,7 @@ public class ObjectSpawner : MonoBehaviour {
 
 				if (objectsToSpawn[objectIndex].tag == "Feather" && reDraw == false) {
 					float playerProgress = GameManager.Instance.GetPlayerProgress();
-					if (Random.Range(0f, 1f) < playerProgress - 0.15f) {
+					if (Random.Range(0f, 1f) < playerProgress - 0.05f) {
 						reDraw = true;
 					} else {
 						reDraw = false;

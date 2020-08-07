@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour, ISetup {
 	private void Update() {
 		int gameOverCheck = GameOverCheck();
 		if (gameOverCheck != 0) {
+			PointsTracker.Instance.SetIsGameOver(true);
 			if (gameOverCheck == -1) {
 				// LOSE
 				//Debug.Log("Player loses.");

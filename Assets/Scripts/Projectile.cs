@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour, IDestroySelf, ISetup {
 	Vector3 direction;
 	GameManager gameManager;
 
+	SpriteRenderer spriteRenderer;
+
 	string goingForTag = "Player";
 
 	public void Setup() {
@@ -29,6 +31,7 @@ public class Projectile : MonoBehaviour, IDestroySelf, ISetup {
 		if (!selfRigidbody) {
 			Debug.LogWarning("Rigidbody2D not found on " + gameObject.name);
 		}
+		spriteRenderer = GetComponent<SpriteRenderer>();
 
 		//Debug.Log("Projectile Setup() called on " + gameObject.name);
 		// Determine the movement direction
@@ -67,6 +70,10 @@ public class Projectile : MonoBehaviour, IDestroySelf, ISetup {
 		} else if (other.tag == "Deflector") {
 			//Debug.Log("Projectile hit deflector!");
 			goingForTag = "Enemy";
+
+			if (spriteRenderer) {
+				spriteRenderer.color = Color.green;
+			}
 
 			direction = (transform.position - other.transform.position).normalized;
 

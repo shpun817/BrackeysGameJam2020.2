@@ -10,6 +10,8 @@ public class DestructibleEnemy : MonoBehaviour, IDestroySelf {
 			gm.IncreaseRestoreHealthAmount(1);
 		}
 
+		PointsTracker.Instance.IncreasePoints(555U);
+
 		// Play Death Animation
 		ObjectPooler.Instance.SpawnFromPool("EnemyExplosion", transform);
 	}

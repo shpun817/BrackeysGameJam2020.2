@@ -7,6 +7,7 @@ public class RestoreHealthIndicator : MonoBehaviour {
 
     public GameManager gameManager;
 	public Sprite[] sprites;
+	public Image heartIndicator;
 
 	int numSprites;
 	Image imageComponent;
