@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, ISetup {
 
+	#region Singleton
+
+		public static GameManager Instance;
+		private void Awake() {
+			Instance = this;
+		}
+
+	#endregion
+
 	[SerializeField, Range(0, 10)]
 	int playerMaxHealth = 4;
 
@@ -23,8 +32,15 @@ public class GameManager : MonoBehaviour, ISetup {
 	[SerializeField]
 	float flashTime = 1f;
 
+	[SerializeField]
+	int maxRestoreHealth = 7;
+	[SerializeField]
+	int restoreHealthAmount = 0;
+	WaitWhile waitWhilePlayerAtMaxHealth;
+	IEnumerator restorePlayerHealth;
+
 	public GameObject swordEffect;
-	float swordDuration = 4.5f;
+	public float swordDuration = 4.5f;
 
 	bool isPlayerFlashing = false;
 	bool isHeartShielded = false;
@@ -73,6 +89,7 @@ public class GameManager : MonoBehaviour, ISetup {
 		waitUntilPlayerPositionTooLow = new WaitUntil(PlayerPositionTooLow);
 		waitForFlashTime = new WaitForSeconds(flashTime);
 		waitForSwordDuration1SecondLess = new WaitForSeconds(swordDuration - 1f);
+		waitWhilePlayerAtMaxHealth = new WaitWhile(PlayerAtMaxHealth);
 		Setup();
 	}
 
@@ -148,9 +165,42 @@ public class GameManager : MonoBehaviour, ISetup {
 	public int GetTargetScore() {
 		return targetScore;
 	}
+
+	public float GetPlayerProgress() {
+		return (float)playerScore / (float)targetScore;
+	}
 	
 	public void IncreaseScore(int increaseAmount) {
 		playerScore += increaseAmount;
+	}
+
+	public int GetRestoreHealthAmount() {
+		return restoreHealthAmount;
+	}
+
+	public int GetMaxRestoreHealth() {
+		return maxRestoreHealth;
+	}
+
+	public void IncreaseRestoreHealthAmount(int restoreAmount) {
+		restoreHealthAmount += restoreAmount;
+		if (restoreHealthAmount >= maxRestoreHealth) {
+			if (restorePlayerHealth != null) {
+				StopCoroutine(restorePlayerHealth);
+			}
+			restorePlayerHealth = RestorePlayerHealth();
+			StartCoroutine(restorePlayerHealth);
+		}
+	}
+
+	bool PlayerAtMaxHealth() {
+		return playerHealth >= playerMaxHealth;
+	}
+
+	IEnumerator RestorePlayerHealth() {
+		yield return waitWhilePlayerAtMaxHealth;
+		playerHealth += Random.Range(1, 3); // Add 1 or 2 (expected 1.5)
+		restoreHealthAmount = 0;
 	}
 
 	public void PlayerTakeDamage(int damageAmount) {

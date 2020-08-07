@@ -106,30 +106,45 @@ public class ObjectSpawner : MonoBehaviour {
 
 		for (int i = 0; i < numObjects; ++i) {
 
-			float determinant = Random.Range(0f, totalWeight);
+			bool reDraw = false;
 
-			int objectIndex = 0;
+			do {
+				float determinant = Random.Range(0f, totalWeight);
 
-			int numTypes = objectsToSpawn.Length;
+				int objectIndex = 0;
 
-			foreach (ObjectToSpawn obj in objectsToSpawn) {
+				int numTypes = objectsToSpawn.Length;
 
-				if (determinant <= obj.weight) {
-					break;
+				foreach (ObjectToSpawn obj in objectsToSpawn) {
+
+					if (determinant <= obj.weight) {
+						break;
+					}
+
+					++objectIndex;
+
+					determinant -= obj.weight;
+
 				}
 
-				++objectIndex;
+				// To play safe
+				if (objectIndex >= numTypes) {
+					objectIndex = numTypes - 1;
+				}
 
-				determinant -= obj.weight;
+				if (objectsToSpawn[objectIndex].tag == "Feather" && reDraw == false) {
+					float playerProgress = GameManager.Instance.GetPlayerProgress();
+					if (Random.Range(0f, 1f) < playerProgress - 0.15f) {
+						reDraw = true;
+					} else {
+						reDraw = false;
+					}
+				} else {
+					reDraw = false;
+				}
 
-			}
-
-			// To play safe
-			if (objectIndex >= numTypes) {
-				objectIndex = numTypes - 1;
-			}
-
-			tags[i] = objectsToSpawn[objectIndex].tag;
+				tags[i] = objectsToSpawn[objectIndex].tag;
+			} while (reDraw);
 
 		}
 
@@ -143,6 +158,7 @@ public class ObjectSpawner : MonoBehaviour {
 		}
 		int size = tags.Length;
 		for (int i = 0; i < size; ++i) {
+			//Debug.Log("Trying to spawn " + tags[i]);
 			if (tags[i] != "None")
 				ObjectPooler.Instance.SpawnFromPool(tags[i], positions[i], spawnRotation);
 		}

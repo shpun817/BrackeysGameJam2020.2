@@ -25,6 +25,7 @@ public class CharacterControl : MonoBehaviour {
 		if (!playerRigidbody) {
 			Debug.LogWarning("Rigidbody not found on player!");
 		}
+		controlCueObject.SetActive(true);
 		StartCoroutine(DisableControlCue());
 	}
 
