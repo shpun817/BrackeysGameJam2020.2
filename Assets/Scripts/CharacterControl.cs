@@ -9,6 +9,9 @@ public class CharacterControl : MonoBehaviour {
 
 	public float bounceForce = 150f;
 
+	public float displayControlCueTime = 2.5f;
+	public GameObject controlCueObject;
+
 	bool isPlayerMovable = true;
 
 	Transform playerTransform;
@@ -22,6 +25,12 @@ public class CharacterControl : MonoBehaviour {
 		if (!playerRigidbody) {
 			Debug.LogWarning("Rigidbody not found on player!");
 		}
+		StartCoroutine(DisableControlCue());
+	}
+
+	IEnumerator DisableControlCue() {
+		yield return new WaitForSeconds(displayControlCueTime);
+		controlCueObject.SetActive(false);
 	}
 
     // Update is called once per frame
