@@ -19,6 +19,10 @@ public class BackgroundCamera : MonoBehaviour {
 
 	float lowestY = 0f;
 
+	public void ResetLowY() {
+		lowestY = 0f;
+	}
+
 	private void Start() {
 		camera = transform.parent.gameObject.GetComponent<Camera>();
 		halfHeight = 16f;

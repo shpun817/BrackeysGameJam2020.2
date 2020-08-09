@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour, ISetup {
 
 	#endregion
 
+	public ObjectSpawner objectSpawner;
+	public BackgroundCamera backgroundCamera;
+
 	[SerializeField, Range(0, 10)]
 	int playerMaxHealth = 4;
 
@@ -142,7 +145,9 @@ public class GameManager : MonoBehaviour, ISetup {
 		Vector3 offset = Vector3.zero - playerTransform.position;
 		playerRewindTime.ApplyOffsetTostoredInformation(offset);
 		playerTransform.position = Vector3.zero;
-
+		
+		objectSpawner.ResetLowY();
+		backgroundCamera.ResetLowY();
 
 		StartCoroutine(TeleportPlayerToOrigin());
 	}

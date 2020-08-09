@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour {
 
-	/* singleton
-	#region Singleton
-
-		public static ObjectSpawner Instance;
-
-		private void Awake() {
-			Instance = this;
-		}
-
-	#endregion
-	*/
+	
 
 	[System.Serializable]
 	public class ObjectToSpawn {
@@ -177,6 +167,10 @@ public class ObjectSpawner : MonoBehaviour {
 		} else {
 			return false;
 		}
+	}
+
+	public void ResetLowY() {
+		lowY = -5f;
 	}
 
 }

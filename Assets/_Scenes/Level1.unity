@@ -706,6 +706,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2178036379006322662}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1263345926 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2421427782890148149, guid: 242b61c4662811840b9331c8e6542ff2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2421427782552195432}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2afc5a617196ba47842a5155b14d33a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1372264124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 65249403193304549, guid: 20eecaa9c61666549bbf4ffdac03497b,
@@ -965,6 +977,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 148159666007628312, guid: fc2be62a601f5c04a9a78670a454b5be,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 148159666007628313, guid: fc2be62a601f5c04a9a78670a454b5be,
         type: 3}
@@ -1839,6 +1856,21 @@ PrefabInstance:
       propertyPath: swordDuration
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6626566796303839484, guid: 45435893647430147883f065f360c5d3,
+        type: 3}
+      propertyPath: playerAltitudeLimit
+      value: -50000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626566796303839484, guid: 45435893647430147883f065f360c5d3,
+        type: 3}
+      propertyPath: objectSpawner
+      value: 
+      objectReference: {fileID: 1263345926}
+    - target: {fileID: 6626566796303839484, guid: 45435893647430147883f065f360c5d3,
+        type: 3}
+      propertyPath: backgroundCamera
+      value: 
+      objectReference: {fileID: 522713642}
     - target: {fileID: 6626566796303839485, guid: 45435893647430147883f065f360c5d3,
         type: 3}
       propertyPath: m_Name

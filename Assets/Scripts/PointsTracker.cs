@@ -15,7 +15,7 @@ public class PointsTracker : MonoBehaviour, ISetup {
 	[SerializeField]
 	float increasePointsInterval = 0.5f;
 	[SerializeField]
-	uint increasePointsAmount = 888U;
+	uint decreasePointsAmount = 888U;
 	WaitForSecondsRealtime waitForIncreasePointsInterval;
 
 	public 
@@ -68,9 +68,9 @@ public class PointsTracker : MonoBehaviour, ISetup {
 
 	public void Setup() {
 		isGameOver = false;
-		playerPoints = 0;
+		playerPoints = 999999999U;
 
-		increasePoints = IncreasePointsPeriodically();
+		increasePoints = DecreasePointsPeriodically();
 		StartCoroutine(increasePoints);
 
 		gameOver = GameOver();
@@ -85,13 +85,17 @@ public class PointsTracker : MonoBehaviour, ISetup {
 		playerPoints += amount;
 	}
 
-	IEnumerator IncreasePointsPeriodically() {
+	IEnumerator DecreasePointsPeriodically() {
 		yield return waitForIncreasePointsInterval;
-		playerPoints += increasePointsAmount;
+
+		if (playerPoints >= decreasePointsAmount)
+			playerPoints -= decreasePointsAmount;
+		else
+			playerPoints = 0U;
 
 		UpdatePointsDisplay();
 
-		increasePoints = IncreasePointsPeriodically();
+		increasePoints = DecreasePointsPeriodically();
 		StartCoroutine(increasePoints);
 	}
 
